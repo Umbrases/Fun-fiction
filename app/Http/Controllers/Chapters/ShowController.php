@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Chapters;
 
-use App\Http\Requests\Chapters\StoreRequest;
+use App\Http\Requests\Chapters\AdminRequest;
 use App\Models\Chapter;
 use App\Models\Fanfiction;
 

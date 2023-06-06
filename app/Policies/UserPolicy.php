@@ -34,6 +34,11 @@ class UserPolicy
     }
 
 
+    public function viewUser(User $user, User $model)
+    {
+        return $model->role === 'user';
+    }
+
 
 
     public function viewAdmin(User $user, User $model)

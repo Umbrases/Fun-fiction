@@ -1,43 +1,6 @@
 @extends('layouts.main')
 @section('content')
 
-    <form action="{{ route('fan.index') }}" method="get">
-
-        <select name="categories" id="categories" class="form-select mb-3 w-25" aria-label="Default select example"
-                style="display: inline-block">
-            @foreach($categories as $category)
-                <option
-                        @if($_GET and $_GET['categories'] == $category->title)
-                            {{ 'selected' }}
-                        @endif
-                    value="{{$category->title}}">{{$category->title}}</option>
-            @endforeach
-        </select>
-
-        <select name="tags" id="tags" class="form-select mb-3 w-25" aria-label="Default select example"
-                style="display: inline-block">
-            @foreach($tags as $tag)
-                <option
-                        @if($_GET and $_GET['tags'] == $tag->title)
-                            {{ 'selected' }}
-                        @endif
-                    value="{{$tag->title}}">{{$tag->title}}</option>
-            @endforeach
-        </select>
-
-        <input type="submit" value="Send">
-    </form>
-
-    @can('view', auth()->user())
-        <div>
-            <a href="{{ route('fan.create') }}" class="btn btn-success mb-3">Add one</a>
-        </div>
-    @endcan
-
-
-
-
-
 
     {{--    <div class="container-fluid">--}}
     @foreach($fanfictions as $fanfiction)

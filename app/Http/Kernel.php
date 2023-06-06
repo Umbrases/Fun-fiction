@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminPanelMiddleware;
+use App\Http\Middleware\UserPanelMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -38,6 +39,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\EncryptCookies::class,
+            \App\Http\Middleware\CheckBanned::class,
         ],
 
         'api' => [
@@ -66,5 +69,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => AdminPanelMiddleware::class,
+        'user' => UserPanelMiddleware::class,
     ];
 }

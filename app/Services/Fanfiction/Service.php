@@ -4,7 +4,6 @@ namespace App\Services\Fanfiction;
 
 use App\Models\Fanfiction;
 use App\Services\ImageUploader;
-use Illuminate\Support\Facades\Storage;
 
 class Service
 {

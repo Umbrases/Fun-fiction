@@ -17,4 +17,8 @@ class ImageUploader
     {
         return Storage::disk('public')->put('/images', $imageData);
     }
+    static function saveAvatar(UploadedFile $imageData)
+    {
+        return Storage::disk('public')->put('/images', $imageData);
+    }
 }

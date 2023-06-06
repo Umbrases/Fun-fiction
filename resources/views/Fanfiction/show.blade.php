@@ -62,7 +62,7 @@
 
         @can('create', $fanfiction)
             <div>
-                <a href="{{ route('chapters.create', $fanfiction->id) }}">Добавить</a>
+                <a href="{{ route('chapters.create', $fanfiction->id) }}" class="btn btn-dark mb-3">Добавить</a>
             </div>
         @endcan
 

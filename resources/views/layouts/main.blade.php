@@ -96,7 +96,7 @@
                                         </a>
 
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('office') }}">
+                                            <a class="dropdown-item" href="{{ route('office.index') }}">
                                                 Кабинет
                                             </a>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -120,8 +120,8 @@
 
             </div>
 
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Поиск">
+            <form  action="{{ route('search.index') }}" method="get" class="d-flex" role="search">
+                <input  name="title" id="title" class="form-control me-2" type="search" placeholder="Search" aria-label="Поиск">
                 <button class="btn btn-outline-success" type="submit">Поиск</button>
             </form>
         </div>

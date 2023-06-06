@@ -29,6 +29,7 @@ Route::group(['namespace' => 'Fanfiction'], function () {
     Route::delete('/work/{fanfiction}', 'DestroyController')->name('fan.destroy');
 
 
+
     Route::group(['namespace' => 'Chapters', 'prefix' => '{fanfiction}'], function () {
         Route::get('/reader/create', 'CreateController')->name('chapters.create');
         Route::post('/reader', 'StoreController')->name('chapters.store');
@@ -44,8 +45,22 @@ Route::group(['namespace' => 'Fanfiction'], function () {
 });
 
 
-Route::group(['namespace' => 'Office'], function () {
-    Route::get('/office', 'IndexController')->name('office');
+Route::group(['namespace' => 'Search'], function () {
+    Route::get('/search', 'IndexController')->name('search.index');
+});
+
+
+Route::group(['namespace' => 'Office', 'middleware' => 'user'], function () {
+    Route::get('/office', 'IndexController')->name('office.index');
+    Route::get('/office/{user}/edit', 'EditController')->name('office.edit');
+    Route::get('/office/{user}/password/edit', 'PasswordEditController')->name('office.password.edit');
+    Route::patch('/office/{user}', 'UpdateController')->name('office.update');
+
+    Route::group([], function (){
+        Route::patch('/{user}', 'AuthorUpdateController')->name('office.update.author');
+    });
+
+    Route::patch('/office/{user}/password', 'PasswordUpdateController')->name('office.password.update');
 
 });
 
@@ -64,6 +79,7 @@ Route::group(['namespace' => 'Chapters'], function () {
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::group(['namespace' => 'Main'], function (){
         Route::get('/', 'IndexController')->name('admin');
+        Route::patch('/{blocked}', 'UpdateController')->name('admin.update');
     });
 });
 

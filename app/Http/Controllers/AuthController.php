@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 class AuthController extends Controller
 {
     /**
@@ -22,6 +24,10 @@ class AuthController extends Controller
     public function login()
     {
         $credentials = request(['email', 'password']);
+
+        if (auth()->attempt(['banned_until' => 1])) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
